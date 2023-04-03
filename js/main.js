@@ -1,6 +1,7 @@
 let map = {};
 let started = false;
 let bombs = 10;
+let needToClick = (10 * 10) - bombs - 1;
 let firstCoords = {
     x: 0,
     y: 0
@@ -16,6 +17,7 @@ function leftClick(x, y) {
         const adjacentCases = findAdjacentCases(x, y);
         adjacentCases.forEach(({ x, y }) => revealCase(x, y));
     }
+
     // check if is flag 
     if (flagedCases.includes(`${x}-${y}`)) return;
 
@@ -24,6 +26,9 @@ function leftClick(x, y) {
         return endGame();
     }
 
+    if (needToClick == 0 && !findedCases.includes(`${x}-${y}`)) {
+        win();
+    }
     // return if is defined 
     else if (findedCases.includes(`${x}-${y}`)) return;
     revealCase(x, y);
@@ -62,6 +67,7 @@ document.addEventListener("contextmenu", (e) => {
 
 
 function initGame(x, y) {
+
     started = true;
     firstCoords.x = x;
     firstCoords.y = y;
@@ -105,25 +111,30 @@ function findAdjacentCases(x, y) {
 }
 
 function revealCase(x, y) {
+    if (!findedCases.includes(`${x}-${y}`)) {
+        needToClick--;
+        document.getElementById(`score`).innerHTML = `Score : ${((10 * 10) - 1) - needToClick}`;
+    }
+
     if (checkMap(x, y, 'any') != 0 || findedCases.includes(`${x}-${y}`)) {
         // Case is not empty or already revealed, return
         setCaseTexture(x, y, `case_${getCaseTexture(x, y)}`);
         addFindedCase(x, y);
-        return;
     }
+    else {
+        // Case is empty and not yet revealed, reveal it
+        setCaseTexture(x, y, `case_${getCaseTexture(x, y)}`);
+        addFindedCase(x, y);
 
-    // Case is empty and not yet revealed, reveal it
-    setCaseTexture(x, y, `case_${getCaseTexture(x, y)}`);
-    addFindedCase(x, y);
-
-    // Reveal adjacent empty cases recursively
-    for (let i = -1; i <= 1; i++) {
-        for (let j = -1; j <= 1; j++) {
-            if (i === 0 && j === 0) continue;
-            const adjacentX = x + i;
-            const adjacentY = y + j;
-            if (adjacentX < 0 || adjacentX > 9 || adjacentY < 0 || adjacentY > 9) continue; // check boundaries
-            revealCase(adjacentX, adjacentY);
+        // Reveal adjacent empty cases recursively
+        for (let i = -1; i <= 1; i++) {
+            for (let j = -1; j <= 1; j++) {
+                if (i === 0 && j === 0) continue;
+                const adjacentX = x + i;
+                const adjacentY = y + j;
+                if (adjacentX < 0 || adjacentX > 9 || adjacentY < 0 || adjacentY > 9) continue; // check boundaries
+                revealCase(adjacentX, adjacentY);
+            }
         }
     }
 }
@@ -184,3 +195,8 @@ function getCaseTexture(x, y) {
 function addFindedCase(x, y) {
     return findedCases.push(`${x}-${y}`);
 }
+
+function win() {
+    alert('You win !');
+}
+

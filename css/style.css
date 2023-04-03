@@ -42,3 +42,14 @@ img {
     -webkit-user-select: none;
     -ms-user-select: none;
 }
+
+#score {
+    text-align: center;
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#bomb-entry {
+    width: 3.5em;
+}
