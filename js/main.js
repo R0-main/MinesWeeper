@@ -11,7 +11,11 @@ let bombCoords = [];
 
 
 function leftClick(x, y) {
-    if (!started) return initGame(x, y);
+    if (!started) {
+        initGame(x, y);
+        const adjacentCases = findAdjacentCases(x, y);
+        adjacentCases.forEach(({ x, y }) => revealCase(x, y));
+    }
     // check if is flag 
     if (flagedCases.includes(`${x}-${y}`)) return;
 
@@ -77,25 +81,64 @@ function initGame(x, y) {
             }
         }
     });
-
-    breakAllBasic(x, y);
 }
 
-function breakAllBasic(x, y) {
-    return;
+function findAdjacentCases(x, y) {
+    const adjacentCases = [];
+
+    for (let row = x - 1; row <= x + 1; row++) {
+        for (let col = y - 1; col <= y + 1; col++) {
+            if (row < 0 || row >= 10 || col < 0 || col >= 10) {
+                continue;
+            }
+
+            if (row === x && col === y) {
+                continue;
+            }
+            if (checkMap(x, y, 'any') == 0) {
+                adjacentCases.push({ x: row, y: col });
+            }
+        }
+    }
+
+    return adjacentCases;
 }
 
 function revealCase(x, y) {
-    // map the number
+    if (checkMap(x, y, 'any') != 0 || findedCases.includes(`${x}-${y}`)) {
+        // Case is not empty or already revealed, return
+        setCaseTexture(x, y, `case_${getCaseTexture(x, y)}`);
+        addFindedCase(x, y);
+        return;
+    }
+
+    // Case is empty and not yet revealed, reveal it
     setCaseTexture(x, y, `case_${getCaseTexture(x, y)}`);
     addFindedCase(x, y);
+
+    // Reveal adjacent empty cases recursively
+    for (let i = -1; i <= 1; i++) {
+        for (let j = -1; j <= 1; j++) {
+            if (i === 0 && j === 0) continue;
+            const adjacentX = x + i;
+            const adjacentY = y + j;
+            if (adjacentX < 0 || adjacentX > 9 || adjacentY < 0 || adjacentY > 9) continue; // check boundaries
+            revealCase(adjacentX, adjacentY);
+        }
+    }
 }
+
 
 function randomCoords() {
     let x = getRandomInt(9);
     let y = getRandomInt(9);
 
-    if (x == firstCoords.x && y == firstCoords.y || bombCoords.includes(`${x}-${y}`)) {
+    // check if the generated coordinates are within the forbidden area
+    const isForbidden = x >= firstCoords.x - 1 && x <= firstCoords.x + 1
+        && y >= firstCoords.y - 1 && y <= firstCoords.y + 1;
+
+    if (isForbidden || bombCoords.includes(`${x}-${y}`)) {
+        // regenerate coordinates if they are in the forbidden area or already contain a bomb
         randomCoords();
         return;
     }
