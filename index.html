@@ -1,135 +1,16 @@
 <body>
-    <script type="text/javascript" src="js/main.js"></script>
     <link rel="stylesheet" href="css/style.css">
 
     <div>
+        <input value="20" type="number" id="grid-entry" min="10" max="1000" placeholder="Grid">
+        <input value="100" type="number" id="bomb-entry" min="1" max="1000" placeholder="Bomb">
+        <input type="checkbox" id="render-bomb" name="Render Bomb" value="true">
+        <label for="Render Bomb">Render Bomb</label>
+        <button onclick="generateArea()" id="start-btn">Start</button>
         <H5, id="score">Score : 0</H5>
     </div>
 
-    <div class="main-grid">
-        <div id="one-column" , class="column">
-            <a onclick="leftClick(0, 0)" , oncontextmenu="rightClick(0, 0)"><img id="0-0" src="assets/case.png"></a>
-            <a onclick="leftClick(1, 0)" , oncontextmenu="rightClick(1, 0)"><img id="1-0" src="assets/case.png"></a>
-            <a onclick="leftClick(2, 0)" , oncontextmenu="rightClick(2, 0)"><img id="2-0" src="assets/case.png"></a>
-            <a onclick="leftClick(3, 0)" , oncontextmenu="rightClick(3, 0)"><img id="3-0" src="assets/case.png"></a>
-            <a onclick="leftClick(4, 0)" , oncontextmenu="rightClick(4, 0)"><img id="4-0" src="assets/case.png"></a>
-            <a onclick="leftClick(5, 0)" , oncontextmenu="rightClick(5, 0)"><img id="5-0" src="assets/case.png"></a>
-            <a onclick="leftClick(6, 0)" , oncontextmenu="rightClick(6, 0)"><img id="6-0" src="assets/case.png"></a>
-            <a onclick="leftClick(7, 0)" , oncontextmenu="rightClick(7, 0)"><img id="7-0" src="assets/case.png"></a>
-            <a onclick="leftClick(8, 0)" , oncontextmenu="rightClick(8, 0)"><img id="8-0" src="assets/case.png"></a>
-            <a onclick="leftClick(9, 0)" , oncontextmenu="rightClick(9, 0)"><img id="9-0" src="assets/case.png"></a>
-        </div>
-
-        <div id="two-column" , class="column">
-            <a onclick="leftClick(0, 1)" , oncontextmenu="rightClick(0, 1)"><img id="0-1" src="assets/case.png"></a>
-            <a onclick="leftClick(1, 1)" , oncontextmenu="rightClick(1, 1)"><img id="1-1" src="assets/case.png"></a>
-            <a onclick="leftClick(2, 1)" , oncontextmenu="rightClick(2, 1)"><img id="2-1" src="assets/case.png"></a>
-            <a onclick="leftClick(3, 1)" , oncontextmenu="rightClick(3, 1)"><img id="3-1" src="assets/case.png"></a>
-            <a onclick="leftClick(4, 1)" , oncontextmenu="rightClick(4, 1)"><img id="4-1" src="assets/case.png"></a>
-            <a onclick="leftClick(5, 1)" , oncontextmenu="rightClick(5, 1)"><img id="5-1" src="assets/case.png"></a>
-            <a onclick="leftClick(6, 1)" , oncontextmenu="rightClick(6, 1)"><img id="6-1" src="assets/case.png"></a>
-            <a onclick="leftClick(7, 1)" , oncontextmenu="rightClick(7, 1)"><img id="7-1" src="assets/case.png"></a>
-            <a onclick="leftClick(8, 1)" , oncontextmenu="rightClick(8, 1)"><img id="8-1" src="assets/case.png"></a>
-            <a onclick="leftClick(9, 1)" , oncontextmenu="rightClick(9, 1)"><img id="9-1" src="assets/case.png"></a>
-        </div>
-
-        <div id="three-column" , class="column">
-            <a onclick="leftClick(0, 2)" , oncontextmenu="rightClick(0, 2)"><img id="0-2" src="assets/case.png"></a>
-            <a onclick="leftClick(1, 2)" , oncontextmenu="rightClick(1, 2)"><img id="1-2" src="assets/case.png"></a>
-            <a onclick="leftClick(2, 2)" , oncontextmenu="rightClick(2, 2)" , oncontextmenu="rightClick(0, 2)"><img
-                    id="2-2" src="assets/case.png"></a>
-            <a onclick="leftClick(3, 2)" , oncontextmenu="rightClick(3, 2)"><img id="3-2" src="assets/case.png"></a>
-            <a onclick="leftClick(4, 2)" , oncontextmenu="rightClick(4, 2)"><img id="4-2" src="assets/case.png"></a>
-            <a onclick="leftClick(5, 2)" , oncontextmenu="rightClick(5, 2)"><img id="5-2" src="assets/case.png"></a>
-            <a onclick="leftClick(6, 2)" , oncontextmenu="rightClick(6, 2)"><img id="6-2" src="assets/case.png"></a>
-            <a onclick="leftClick(7, 2)" , oncontextmenu="rightClick(7, 2)"><img id="7-2" src="assets/case.png"></a>
-            <a onclick="leftClick(8, 2)" , oncontextmenu="rightClick(8, 2)"><img id="8-2" src="assets/case.png"></a>
-            <a onclick="leftClick(9, 2)" , oncontextmenu="rightClick(9, 2)"><img id="9-2" src="assets/case.png"></a>
-        </div>
-
-        <div id="four-column" , class="column">
-            <a onclick="leftClick(0, 3)" , oncontextmenu="rightClick(0, 3)"><img id="0-3" src="assets/case.png"></a>
-            <a onclick="leftClick(1, 3)" , oncontextmenu="rightClick(1, 3)"><img id="1-3" src="assets/case.png"></a>
-            <a onclick="leftClick(2, 3)" , oncontextmenu="rightClick(2, 3)"><img id="2-3" src="assets/case.png"></a>
-            <a onclick="leftClick(3, 3)" , oncontextmenu="rightClick(3, 3)"><img id="3-3" src="assets/case.png"></a>
-            <a onclick="leftClick(4, 3)" , oncontextmenu="rightClick(4, 3)"><img id="4-3" src="assets/case.png"></a>
-            <a onclick="leftClick(5, 3)" , oncontextmenu="rightClick(5, 3)"><img id="5-3" src="assets/case.png"></a>
-            <a onclick="leftClick(6, 3)" , oncontextmenu="rightClick(6, 3)"><img id="6-3" src="assets/case.png"></a>
-            <a onclick="leftClick(7, 3)" , oncontextmenu="rightClick(7, 3)"><img id="7-3" src="assets/case.png"></a>
-            <a onclick="leftClick(8, 3)" , oncontextmenu="rightClick(8, 3)"><img id="8-3" src="assets/case.png"></a>
-            <a onclick="leftClick(9, 3)" , oncontextmenu="rightClick(9, 3)"><img id="9-3" src="assets/case.png"></a>
-
-        </div>
-        <div id="five-column" , class="column">
-            <a onclick="leftClick(0, 4)" , oncontextmenu="rightClick(0, 4)"><img id="0-4" src="assets/case.png"></a>
-            <a onclick="leftClick(1, 4)" , oncontextmenu="rightClick(1, 4)"><img id="1-4" src="assets/case.png"></a>
-            <a onclick="leftClick(2, 4)" , oncontextmenu="rightClick(2, 4)"><img id="2-4" src="assets/case.png"></a>
-            <a onclick="leftClick(3, 4)" , oncontextmenu="rightClick(3, 4)"><img id="3-4" src="assets/case.png"></a>
-            <a onclick="leftClick(4, 4)" , oncontextmenu="rightClick(4, 4)"><img id="4-4" src="assets/case.png"></a>
-            <a onclick="leftClick(5, 4)" , oncontextmenu="rightClick(5, 4)"><img id="5-4" src="assets/case.png"></a>
-            <a onclick="leftClick(6, 4)" , oncontextmenu="rightClick(6, 4)"><img id="6-4" src="assets/case.png"></a>
-            <a onclick="leftClick(7, 4)" , oncontextmenu="rightClick(7, 4)"><img id="7-4" src="assets/case.png"></a>
-            <a onclick="leftClick(8, 4)" , oncontextmenu="rightClick(8, 4)"><img id="8-4" src="assets/case.png"></a>
-            <a onclick="leftClick(9, 4)" , oncontextmenu="rightClick(9, 4)"><img id="9-4" src="assets/case.png"></a>
-        </div>
-        <div id="six-column" , class="column">
-            <a onclick="leftClick(0, 5)" , oncontextmenu="rightClick(0, 5)"><img id="0-5" src="assets/case.png"></a>
-            <a onclick="leftClick(1, 5)" , oncontextmenu="rightClick(1, 5)"><img id="1-5" src="assets/case.png"></a>
-            <a onclick="leftClick(2, 5)" , oncontextmenu="rightClick(2, 5)"><img id="2-5" src="assets/case.png"></a>
-            <a onclick="leftClick(3, 5)" , oncontextmenu="rightClick(3, 5)"><img id="3-5" src="assets/case.png"></a>
-            <a onclick="leftClick(4, 5)" , oncontextmenu="rightClick(4, 5)"><img id="4-5" src="assets/case.png"></a>
-            <a onclick="leftClick(5, 5)" , oncontextmenu="rightClick(5, 5)"><img id="5-5" src="assets/case.png"></a>
-            <a onclick="leftClick(6, 5)" , oncontextmenu="rightClick(6, 5)"><img id="6-5" src="assets/case.png"></a>
-            <a onclick="leftClick(7, 5)" , oncontextmenu="rightClick(7, 5)"><img id="7-5" src="assets/case.png"></a>
-            <a onclick="leftClick(8, 5)" , oncontextmenu="rightClick(8, 5)"><img id="8-5" src="assets/case.png"></a>
-            <a onclick="leftClick(9, 5)" , oncontextmenu="rightClick(9, 5)"><img id="9-5" src="assets/case.png"></a>
-        </div>
-        <div id="seven-column" , class="column">
-            <a onclick="leftClick(0, 6)" , oncontextmenu="rightClick(0, 6)"><img id="0-6" src="assets/case.png"></a>
-            <a onclick="leftClick(1, 6)" , oncontextmenu="rightClick(1, 6)"><img id="1-6" src="assets/case.png"></a>
-            <a onclick="leftClick(2, 6)" , oncontextmenu="rightClick(2, 6)"><img id="2-6" src="assets/case.png"></a>
-            <a onclick="leftClick(3, 6)" , oncontextmenu="rightClick(3, 6)"><img id="3-6" src="assets/case.png"></a>
-            <a onclick="leftClick(4, 6)" , oncontextmenu="rightClick(4, 6)"><img id="4-6" src="assets/case.png"></a>
-            <a onclick="leftClick(5, 6)" , oncontextmenu="rightClick(5, 6)"><img id="5-6" src="assets/case.png"></a>
-            <a onclick="leftClick(6, 6)" , oncontextmenu="rightClick(6, 6)"><img id="6-6" src="assets/case.png"></a>
-            <a onclick="leftClick(7, 6)" , oncontextmenu="rightClick(7, 6)"><img id="7-6" src="assets/case.png"></a>
-            <a onclick="leftClick(8, 6)" , oncontextmenu="rightClick(8, 6)"><img id="8-6" src="assets/case.png"></a>
-            <a onclick="leftClick(9, 6)" , oncontextmenu="rightClick(9, 6)"><img id="9-6" src="assets/case.png"></a>
-        </div>
-        <div id="eight-column" , class="column">
-            <a onclick="leftClick(0, 7)" , oncontextmenu="rightClick(0, 7)"><img id="0-7" src="assets/case.png"></a>
-            <a onclick="leftClick(1, 7)" , oncontextmenu="rightClick(1, 7)"><img id="1-7" src="assets/case.png"></a>
-            <a onclick="leftClick(2, 7)" , oncontextmenu="rightClick(2, 7)"><img id="2-7" src="assets/case.png"></a>
-            <a onclick="leftClick(3, 7)" , oncontextmenu="rightClick(3, 7)"><img id="3-7" src="assets/case.png"></a>
-            <a onclick="leftClick(4, 7)" , oncontextmenu="rightClick(4, 7)"><img id="4-7" src="assets/case.png"></a>
-            <a onclick="leftClick(5, 7)" , oncontextmenu="rightClick(5, 7)"><img id="5-7" src="assets/case.png"></a>
-            <a onclick="leftClick(6, 7)" , oncontextmenu="rightClick(6, 7)"><img id="6-7" src="assets/case.png"></a>
-            <a onclick="leftClick(7, 7)" , oncontextmenu="rightClick(7, 7)"><img id="7-7" src="assets/case.png"></a>
-            <a onclick="leftClick(8, 7)" , oncontextmenu="rightClick(8, 7)"><img id="8-7" src="assets/case.png"></a>
-            <a onclick="leftClick(9, 7)" , oncontextmenu="rightClick(9, 7)"><img id="9-7" src="assets/case.png"></a>
-        </div>
-        <div id="nine-column" , class="column">
-            <a onclick="leftClick(0, 8)" , oncontextmenu="rightClick(0, 8)"><img id="0-8" src="assets/case.png"></a>
-            <a onclick="leftClick(1, 8)" , oncontextmenu="rightClick(1, 8)"><img id="1-8" src="assets/case.png"></a>
-            <a onclick="leftClick(2, 8)" , oncontextmenu="rightClick(2, 8)"><img id="2-8" src="assets/case.png"></a>
-            <a onclick="leftClick(3, 8)" , oncontextmenu="rightClick(3, 8)"><img id="3-8" src="assets/case.png"></a>
-            <a onclick="leftClick(4, 8)" , oncontextmenu="rightClick(4, 8)"><img id="4-8" src="assets/case.png"></a>
-            <a onclick="leftClick(5, 8)" , oncontextmenu="rightClick(5, 8)"><img id="5-8" src="assets/case.png"></a>
-            <a onclick="leftClick(6, 8)" , oncontextmenu="rightClick(6, 8)"><img id="6-8" src="assets/case.png"></a>
-            <a onclick="leftClick(7, 8)" , oncontextmenu="rightClick(7, 8)"><img id="7-8" src="assets/case.png"></a>
-            <a onclick="leftClick(8, 8)" , oncontextmenu="rightClick(8, 8)"><img id="8-8" src="assets/case.png"></a>
-            <a onclick="leftClick(9, 8)" , oncontextmenu="rightClick(9, 8)"><img id="9-8" src="assets/case.png"></a>
-        </div>
-        <div id="ten-column" , class="column">
-            <a onclick="leftClick(0, 9)" , oncontextmenu="rightClick(0, 9)"><img id="0-9" src="assets/case.png"></a>
-            <a onclick="leftClick(1, 9)" , oncontextmenu="rightClick(1, 9)"><img id="1-9" src="assets/case.png"></a>
-            <a onclick="leftClick(2, 9)" , oncontextmenu="rightClick(2, 9)"><img id="2-9" src="assets/case.png"></a>
-            <a onclick="leftClick(3, 9)" , oncontextmenu="rightClick(3, 9)"><img id="3-9" src="assets/case.png"></a>
-            <a onclick="leftClick(4, 9)" , oncontextmenu="rightClick(4, 9)"><img id="4-9" src="assets/case.png"></a>
-            <a onclick="leftClick(5, 9)" , oncontextmenu="rightClick(5, 9)"><img id="5-9" src="assets/case.png"></a>
-            <a onclick="leftClick(6, 9)" , oncontextmenu="rightClick(6, 9)"><img id="6-9" src="assets/case.png"></a>
-            <a onclick="leftClick(7, 9)" , oncontextmenu="rightClick(7, 9)"><img id="7-9" src="assets/case.png"></a>
-            <a onclick="leftClick(8, 9)" , oncontextmenu="rightClick(8, 9)"><img id="8-9" src="assets/case.png"></a>
-            <a onclick="leftClick(9, 9)" , oncontextmenu="rightClick(9, 9)"><img id="9-9" src="assets/case.png"></a>
-        </div>
+    <div id="main-grid">
+    </div>
+    <script type="text/javascript" src="js/main.js"></script>
 </body>
